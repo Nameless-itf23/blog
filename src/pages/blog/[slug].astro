@@ -18,6 +18,6 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout pageName="page-name" description="some-description">
+<BaseLayout pageName={post.data.title} description={post.data.description}>
   <Content />
 </BaseLayout>
