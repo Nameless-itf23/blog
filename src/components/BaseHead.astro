@@ -1,0 +1,31 @@
+---
+import { SITE_NAME } from "src/consts.ts";
+
+export type Props = {
+  pageName?: string;
+  description?: string;
+};
+
+const { pageName, description } = Astro.props;
+
+const title = pageName ? `${pageName} - ${SITE_NAME}` : SITE_NAME;
+---
+
+<meta charset="utf-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- <meta property="og:url" content="ページのURL" />
+<meta property="og:title" content="ページのタイトル" />
+<meta property="og:type" content="ページのタイプ">
+<meta property="og:description" content="記事の抜粋" />
+<meta property="og:image" content="画像のURL" />
+<meta name="twitter:card" content="カード種類" />
+<meta name="twitter:site" content="@Twitterユーザー名" />
+<meta property="og:site_name" content="サイト名" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="fb:app_id" content="appIDを入力" /> -->
