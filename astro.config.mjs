@@ -13,5 +13,14 @@ export default defineConfig({
       langs: [],
       wrap: true,
     },
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@styles/vars.scss";`
+        }
+      }
+    }
   }
 });

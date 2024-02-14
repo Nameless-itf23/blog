@@ -7,7 +7,7 @@ const postCollection = defineCollection({
     updatedAt: z.date().optional(),
     title: z.string(),
     description: z.string(),
-    thumbnail: z.string().optional(),
+    icon: z.string().emoji().length(2),
     tags: z.array(z.string()),
   }),
 });

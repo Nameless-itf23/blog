@@ -1,0 +1,108 @@
+---
+import { type CollectionEntry } from "astro:content";
+
+export type Props = {
+  posts: CollectionEntry<"posts">[];
+};
+
+const { posts } = Astro.props;
+---
+
+<div class="posts">
+  {
+    posts.map((post) => (
+      <a href={"/blog/" + post.slug} class="post">
+        <div class="icon">
+          <p>{post.data.icon}</p>
+        </div>
+        <div class="infomation">
+          <p>{post.data.title}</p>
+          <div class="tags">
+            {post.data.tags.map((tag) => (
+              <div class="tag">
+                <p>{tag}</p>
+              </div>
+            ))}
+          </div>
+          <time datetime={post.data.createdAt.toISOString()}>
+            <span class="material-symbols-outlined">schedule</span>
+            <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
+          </time>
+        </div>
+      </a>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  @import "@styles/vars.scss";
+  .posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    background-color: $lightBlue;
+    & > .post {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      width: 50%;
+      padding: 10px;
+      & > .icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 20px;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.4em;
+      }
+      & > .infomation {
+        flex: 1;
+        margin: 14px;
+        & > p {
+          color: $black;
+          font-weight: 500;
+          font-size: 1.2em;
+          line-height: 1.5em;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        }
+        & > .tags {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin: 4px 0;
+          & > .tag {
+            margin: 0 4px 0 0;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            color: $darkGray;
+            background-color: $skyBlue;
+            border-radius: 6px;
+          }
+        }
+        & > time {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          color: $gray;
+          font-size: 0.9em;
+          & > .material-symbols-outlined {
+            font-size: 0.9em;
+            padding: 0 6px 0 0;
+          }
+        }
+      }
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+    }
+  }
+</style>
