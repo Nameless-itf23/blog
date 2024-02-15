@@ -1,0 +1,15 @@
+---
+import { type CollectionEntry } from "astro:content";
+import "@styles/post.scss";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<div class="post">
+  <Content />
+</div>

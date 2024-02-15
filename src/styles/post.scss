@@ -1,0 +1,159 @@
+@import "@styles/vars.scss";
+
+.post {
+    line-height: 2em;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 2em 0 0.5em 0;
+        font-weight: 700;
+        color: $black;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        padding: 10px;
+        border-bottom: 1.6px solid $whiteGray;
+    }
+
+    h2 {
+        font-size: 1.6em;
+        padding: 10px;
+        border-bottom: 1.6px solid $whiteGray;
+    }
+
+    h3 {
+        font-size: 1.4em;
+    }
+
+    h4 {
+        font-size: 1.3em;
+    }
+
+    h5 {
+        font-size: 1.2em;
+    }
+
+    h6 {
+        font-size: 1.1em;
+    }
+
+    strong,
+    b {
+        font-weight: 700;
+    }
+
+    a {
+        color: $blue;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    p {
+        margin-bottom: 1.5em;
+    }
+
+    .prose p {
+        margin-bottom: 2em;
+    }
+
+    textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    table {
+        border: 1px solid $whiteGray;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    th {
+        padding: 3px 6px;
+        background: $grayWhite;
+        border: solid 1px $whiteGray;
+    }
+
+    td {
+        padding: 3px 6px;
+        border: solid 1px $whiteGray;
+    }
+
+    ul {
+        list-style: disc;
+        list-style-position: outside;
+        padding: 0 0 0 1.6em;
+
+        ::marker {
+            color: $gray;
+        }
+    }
+
+    ol {
+        list-style: decimal;
+        list-style-position: outside;
+        padding: 0 0 0 1.6em;
+
+        ::marker {
+            color: $gray;
+            font-weight: 500;
+        }
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    code {
+        padding: 2px 5px;
+        border-radius: 6px;
+        background-color: $grayWhite;
+        font-family: 'Consolas';
+    }
+
+    pre {
+        margin: 1em 0;
+        padding: 0.8em;
+        border-radius: 8px;
+        font-size: 0.9em;
+    }
+
+    pre>code {
+        all: unset;
+        font-family: 'Consolas';
+    }
+
+    blockquote {
+        border-left: 4px solid $lightGray;
+        color: $lightGray;
+        padding: 4px 0 4px 16px;
+        margin: 1.5em 0;
+
+        &>p {
+            margin: 0;
+        }
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid $whiteGray;
+    }
+
+    img {
+        display: block;
+        margin: 1.5em auto;
+        border-radius: 2px;
+    }
+}
