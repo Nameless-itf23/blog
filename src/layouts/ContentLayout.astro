@@ -1,0 +1,15 @@
+---
+import { type Props as HeadProps } from "@components/BaseHead.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+
+export type Props = HeadProps;
+const { ...head } = Astro.props;
+---
+
+<BaseLayout {...head}>
+  <Header />
+  <main>
+    <slot />
+  </main>
+</BaseLayout>
