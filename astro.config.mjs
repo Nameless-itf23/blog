@@ -14,13 +14,4 @@ export default defineConfig({
       wrap: true,
     },
   },
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@import "@styles/vars.scss";`
-        }
-      }
-    }
-  }
 });

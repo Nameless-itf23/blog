@@ -1,0 +1,29 @@
+---
+import { toResolvedName, toCssName } from "@components/NerdUtils";
+
+interface Props {
+  iconName: string;
+}
+
+const { iconName } = Astro.props;
+
+const resolvedName = toResolvedName(iconName);
+const cssName = toCssName(iconName);
+---
+
+<i class=`nf ${resolvedName} ${cssName}`></i>
+<style lang="scss">
+  @use "@styles/catppuccin.scss";
+
+  .heart {
+    color: catppuccin.$red;
+  }
+
+  .typescript {
+    color: catppuccin.$blue;
+  }
+
+  .default {
+    color: catppuccin.$sky;
+  }
+</style>
