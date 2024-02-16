@@ -1,0 +1,19 @@
+---
+import type { Node } from "@components/toc/Toc.astro";
+
+export type Props = { node: Node };
+const { node } = Astro.props;
+---
+
+<li>
+  {node.heading && <a href={"#" + node.heading.slug}>{node.heading.text}</a>}
+  {
+    node.subheadings.length > 0 && (
+      <ul>
+        {node.subheadings.map((subheading) => (
+          <Astro.self node={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>

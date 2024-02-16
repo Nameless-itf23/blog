@@ -1,15 +1,17 @@
 ---
 import { type CollectionEntry } from "astro:content";
+import Toc from "@components/toc/Toc.astro";
 import "@styles/post.scss";
 
-interface Props {
+export type Props = {
   post: CollectionEntry<"posts">;
-}
+};
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
 
 <div class="post">
+  <Toc headings={headings} />
   <Content />
 </div>

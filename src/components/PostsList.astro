@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry } from "astro:content";
-import Nerd from "@components/Nerd.astro";
-import { toDisplayName } from "@components/NerdUtils";
+import Nerd from "@components/nerd/Nerd.astro";
+import { toDisplayName } from "@components/nerd/NerdUtils";
 
 export type Props = {
   posts: CollectionEntry<"posts">[];
