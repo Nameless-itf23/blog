@@ -5,7 +5,7 @@ export type Props = { node: Node };
 const { node } = Astro.props;
 ---
 
-<li>
+<li class={`depth${node.depth}`}>
   {node.heading && <a href={"#" + node.heading.slug}>{node.heading.text}</a>}
   {
     node.subheadings.length > 0 && (
@@ -17,3 +17,41 @@ const { node } = Astro.props;
     )
   }
 </li>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+
+  .depth1,
+  .depth2 {
+    list-style: disc outside;
+    font-size: 16px;
+    line-height: 1.6;
+
+    &::marker {
+      color: basePalette.$lightGray;
+      font-weight: bold;
+    }
+  }
+
+  .depth3 {
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+    font-size: 16px;
+    padding: 5px 0 5px 20px;
+
+    &::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      left: 0;
+      top: 14px;
+      content: "";
+      border-right: 2px solid basePalette.$lightGray;
+      border-top: 2px solid basePalette.$lightGray;
+      transform: rotate(45deg);
+    }
+  }
+</style>
