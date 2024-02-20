@@ -1,0 +1,48 @@
+---
+import Nerd from "@components/nerd/Nerd.astro";
+import { toDisplayName } from "@components/nerd/NerdUtils";
+
+export type Props = { tags: string[] };
+const { tags } = Astro.props;
+---
+
+<div class="tags">
+  {
+    tags.map((tag: string) => (
+      <div class="tag">
+        <Nerd iconName={tag} />
+        <p>{toDisplayName(tag)}</p>
+      </div>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+
+  .tags {
+    height: 28px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & > .tag {
+      height: 28px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0 4px 0 0;
+      padding: 13px 8px;
+      font-size: 14px;
+      color: basePalette.$darkGray;
+      background-color: basePalette.$white;
+      border: 1px solid basePalette.$whiteGray;
+      border-radius: 14px;
+      & > p {
+        padding: 0 4px;
+      }
+    }
+  }
+</style>

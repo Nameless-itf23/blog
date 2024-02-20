@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import Nerd from "@components/nerd/Nerd.astro";
-import { toDisplayName } from "@components/nerd/NerdUtils";
+import Tags from "@components/Tags.astro";
 
 export type Props = {
   posts: CollectionEntry<"posts">[];
@@ -20,12 +20,7 @@ const { posts } = Astro.props;
         <div class="infomation">
           <p>{post.data.title}</p>
           <div class="tags">
-            {post.data.tags.map((tag: string) => (
-              <div class="tag">
-                <Nerd iconName={tag} />
-                <p>{toDisplayName(tag)}</p>
-              </div>
-            ))}
+            <Tags tags={post.data.tags} />
           </div>
           <time datetime={post.data.createdAt.toISOString()}>
             <span class="material-symbols-outlined">schedule</span>
@@ -78,36 +73,17 @@ const { posts } = Astro.props;
           -webkit-line-clamp: 2;
         }
         & > .tags {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          margin: 4px 0;
-          & > .tag {
-            height: 24px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin: 0 4px 0 0;
-            padding: 2px 8px;
-            font-size: 14px;
-            color: basePalette.$darkGray;
-            background-color: basePalette.$skyBlue;
-            border-radius: 12px;
-            & > p {
-              margin: auto 0;
-              padding: 0 4px;
-            }
-          }
+          height: 28px;
+          margin: 6px 0;
         }
         & > time {
           display: flex;
           flex-direction: row;
           align-items: center;
           color: basePalette.$gray;
-          font-size: 0.9em;
+          font-size: 14px;
           & > .material-symbols-outlined {
-            font-size: 0.9em;
+            font-size: 14px;
             padding: 0 6px 0 0;
           }
         }

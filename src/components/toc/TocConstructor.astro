@@ -21,14 +21,19 @@ const { node } = Astro.props;
 <style lang="scss">
   @use "@styles/basePalette.scss";
 
+  a {
+    color: basePalette.$gray;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
   .depth1,
   .depth2 {
     list-style: disc outside;
-    font-size: 16px;
     line-height: 1.6;
 
     &::marker {
-      color: basePalette.$lightGray;
+      color: basePalette.$blue;
       font-weight: bold;
     }
   }
@@ -39,7 +44,6 @@ const { node } = Astro.props;
     padding: 0;
 
     position: relative;
-    font-size: 16px;
     padding: 5px 0 5px 20px;
 
     &::before {
@@ -49,8 +53,8 @@ const { node } = Astro.props;
       left: 0;
       top: 14px;
       content: "";
-      border-right: 2px solid basePalette.$lightGray;
-      border-top: 2px solid basePalette.$lightGray;
+      border-right: 2px solid basePalette.$blue;
+      border-top: 2px solid basePalette.$blue;
       transform: rotate(45deg);
     }
   }

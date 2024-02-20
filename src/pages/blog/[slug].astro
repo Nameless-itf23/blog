@@ -3,6 +3,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ContentLayout from "@layouts/ContentLayout.astro";
 import PostWrapper from "@components/PostWrapper.astro";
 import Toc from "@components/toc/Toc.astro";
+import Tags from "@components/Tags.astro";
+import { extractPlainText } from "@utils/textExtractor";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -21,9 +23,102 @@ const { post } = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
-<ContentLayout pageName={post.data.title} description={post.data.description}>
-  <Toc headings={headings} />
-  <PostWrapper>
-    <Content />
-  </PostWrapper>
+<ContentLayout pageName={post.data.title} description={extractPlainText(post.body)}>
+  <div class="page">
+    <div class="content">
+      <div class="post">
+        <div class="titleBlock">
+          <p class="postTitle">{post.data.title}</p>
+          <div class="tags">
+            <Tags tags={post.data.tags} />
+          </div>
+          <time datetime={post.data.createdAt.toISOString()}>
+            <span class="material-symbols-outlined">schedule</span>
+            <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
+          </time>
+          {
+            post.data.updatedAt && (
+              <time datetime={post.data.updatedAt.toISOString()}>
+                <span class="material-symbols-outlined">refresh</span>
+                <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.updatedAt)}</p>
+              </time>
+            )
+          }
+        </div>
+        <PostWrapper>
+          <Content />
+        </PostWrapper>
+      </div>
+      <div class="toc">
+        <div class="tocContent">
+          <p class="tocTitle">目次</p>
+          <Toc headings={headings} />
+        </div>
+      </div>
+    </div>
+  </div>
 </ContentLayout>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+
+  .page {
+    background-color: basePalette.$lightWhite;
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 40px 0;
+      & > .post {
+        flex: 1;
+        max-width: 1000px;
+        border: 1px solid basePalette.$whiteGray;
+        margin: 0 50px 0 0;
+        padding: 40px;
+        border-radius: 8px;
+        background-color: basePalette.$white;
+        & > .titleBlock {
+          & > .postTitle {
+            margin: 20px 0 60px 0;
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            color: basePalette.$black;
+          }
+          & .tags {
+            margin: 16px 0 0 0;
+          }
+          & > time {
+            display: flex inline;
+            flex-direction: row;
+            align-items: center;
+            margin: 16px 16px 0 0;
+            color: basePalette.$gray;
+            font-size: 16px;
+            & > .material-symbols-outlined {
+              font-size: 16px;
+              padding: 0 6px 0 0;
+            }
+          }
+        }
+      }
+      & > .toc {
+        & > .tocContent {
+          position: sticky;
+          top: 20px;
+          width: 270px;
+          padding: 20px;
+          border-radius: 8px;
+          border: 1px solid basePalette.$whiteGray;
+          background-color: basePalette.$white;
+          & > .tocTitle {
+            font-size: 16px;
+            font-weight: 700;
+            color: basePalette.$gray;
+            margin: 0 0 8px 0;
+          }
+        }
+      }
+    }
+  }
+</style>
