@@ -1,0 +1,62 @@
+---
+import type { MarkdownHeading } from "astro";
+import TocConstructor from "./TocConstructor.astro";
+
+export type Node = {
+  depth: number;
+  heading?: { text: string; slug: string };
+  subheadings: Node[];
+};
+
+type Toc = Node[];
+
+const formatHeadings = (headings: MarkdownHeading[], maxDepth: number) => {
+  const nodes: Node[] = [];
+  let leafDepth = 1;
+  headings.forEach((h) => {
+    if (h.depth > maxDepth) return;
+    if (h.depth > leafDepth) {
+      for (let i = leafDepth; i < h.depth; i++) {
+        nodes.push({ depth: i, subheadings: [] });
+      }
+    }
+    nodes.push({ depth: h.depth, heading: { text: h.text, slug: h.slug }, subheadings: [] });
+    leafDepth = h.depth + 1;
+  });
+
+  return nodes;
+};
+
+const buildToc = (headings: MarkdownHeading[], maxDepth: number) => {
+  const nodes: Node[] = formatHeadings(headings, maxDepth);
+  const toc: Toc = [];
+  const parentHeadings = new Map();
+  nodes.forEach((node) => {
+    parentHeadings.set(node.depth, node);
+    if (node.depth === 1) {
+      toc.push(node);
+    } else {
+      parentHeadings.get(node.depth - 1).subheadings.push(node);
+    }
+  });
+  return toc;
+};
+
+export type Props = { headings: MarkdownHeading[] };
+const { headings } = Astro.props;
+
+const MAX_DEPTH = 3;
+const toc = buildToc(headings, MAX_DEPTH);
+---
+
+<nav class="toc">
+  <ul>
+    {toc.map((node) => <TocConstructor node={node} />)}
+  </ul>
+</nav>
+
+<style lang="scss">
+  ul {
+    padding: 0 0 0 1.6em;
+  }
+</style>
