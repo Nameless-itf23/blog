@@ -156,4 +156,40 @@
         margin: 1.5em auto;
         border-radius: 2px;
     }
+
+    @media screen and (max-width: 600px) {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 1.6em;
+        }
+
+        h2 {
+            font-size: 1.4em;
+        }
+
+        h3 {
+            font-size: 1.3em;
+        }
+
+        h4 {
+            font-size: 1.2em;
+        }
+
+        h5 {
+            font-size: 1.1em;
+        }
+
+        h6 {
+            font-size: 1em;
+        }
+    }
 }
