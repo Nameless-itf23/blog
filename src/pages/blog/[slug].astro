@@ -28,10 +28,6 @@ const { Content, headings } = await post.render();
     <div class="content">
       <div class="post">
         <div class="titleBlock">
-          <p class="postTitle">{post.data.title}</p>
-          <div class="tags">
-            <Tags tags={post.data.tags} />
-          </div>
           <time datetime={post.data.createdAt.toISOString()}>
             <span class="material-symbols-outlined">schedule</span>
             <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
@@ -44,6 +40,10 @@ const { Content, headings } = await post.render();
               </time>
             )
           }
+          <div class="postTitleWrapper"><p class="postTitle">{post.data.title}</p></div>
+          <div class="tags">
+            <Tags tags={post.data.tags} />
+          </div>
         </div>
         <PostWrapper>
           <Content />
@@ -64,29 +64,33 @@ const { Content, headings } = await post.render();
 
   .page {
     background-color: basePalette.$lightWhite;
-    .content {
+    & > .content {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      padding: 40px 0;
+      padding: 40px;
       & > .post {
         flex: 1;
         max-width: 1000px;
         border: 1px solid basePalette.$whiteGray;
-        margin: 0 50px 0 0;
-        padding: 40px;
+        padding: 16px 40px 40px 40px;
         border-radius: 8px;
         background-color: basePalette.$white;
         & > .titleBlock {
-          & > .postTitle {
-            margin: 20px 0 60px 0;
-            font-size: 30px;
-            font-weight: 600;
-            text-align: center;
-            color: basePalette.$black;
+          & > .postTitleWrapper {
+            display: flex;
+            justify-content: center;
+            & > .postTitle {
+              margin: 60px 0 60px 0;
+              font-size: 30px;
+              font-weight: 600;
+              color: basePalette.$black;
+            }
           }
           & .tags {
             margin: 16px 0 0 0;
+            display: flex;
+            justify-content: center;
           }
           & > time {
             display: flex inline;
@@ -107,6 +111,7 @@ const { Content, headings } = await post.render();
           position: sticky;
           top: 20px;
           width: 270px;
+          margin: 0 0 0 50px;
           padding: 20px;
           border-radius: 8px;
           border: 1px solid basePalette.$whiteGray;
@@ -116,6 +121,44 @@ const { Content, headings } = await post.render();
             font-weight: 700;
             color: basePalette.$gray;
             margin: 0 0 8px 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 950px) {
+    .page {
+      & > .content {
+        padding: 30px 15px 15px 15px;
+        & > .post {
+          & > .titleBlock {
+            & > .postTitleWrapper {
+              & > .postTitle {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        & > .toc {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .page {
+      & > .content {
+        padding: 30px 0 0 0;
+        & > .post {
+          padding: 20px;
+          & > .titleBlock {
+            & > .postTitleWrapper {
+              & > .postTitle {
+                font-size: 20px;
+              }
+            }
           }
         }
       }
