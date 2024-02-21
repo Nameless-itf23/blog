@@ -5,7 +5,7 @@ import profileIcon from "@assets/profileIcon.png";
 ---
 
 <header>
-  <Image class="profileIcon" src={profileIcon} alt="" />
+  <Image class="profileIcon" src={profileIcon} alt="profile icon" />
   <p class="siteName">{SITE_NAME}</p>
 </header>
 
@@ -28,6 +28,7 @@ import profileIcon from "@assets/profileIcon.png";
     & > .siteName {
       font-size: 1.2em;
       font-weight: 700;
+      color: basePalette.$black;
     }
   }
 </style>

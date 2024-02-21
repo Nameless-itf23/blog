@@ -1,11 +1,95 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import PostsList from "@components/PostsList.astro";
 import ContentLayout from "@layouts/ContentLayout.astro";
+import { SITE_NAME } from "src/consts.ts";
+import profileIcon from "@assets/profileIcon.png";
 
 const allPosts = await getCollection("posts");
 ---
 
 <ContentLayout>
-  <PostsList posts={allPosts} />
+  <div class="hero">
+    <Image class="profileIcon" src={profileIcon} alt="profile icon" />
+    <p class="siteName">{SITE_NAME}</p>
+  </div>
+  <div class="contentWrapper">
+    <div class="content">
+      <p class="navigationText">Posts</p>
+      <div class="postsList">
+        <PostsList posts={allPosts} />
+      </div>
+    </div>
+  </div>
 </ContentLayout>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 45px 0;
+    & > .profileIcon {
+      width: 130px;
+      height: 130px;
+      border-radius: 65px;
+      margin: 22px 0;
+    }
+    & > .siteName {
+      font-size: 30px;
+      font-weight: 700;
+      margin: 0 0 22px 0;
+    }
+  }
+  .contentWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: basePalette.$lightBlue;
+    & > .content {
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      padding: 30px;
+      & > .navigationText {
+        font-size: 30px;
+        font-weight: 600;
+        color: basePalette.$darkGray;
+        margin: 0 0 0 50px;
+      }
+      & > .postsList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .hero {
+      & > .profileIcon {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+      }
+      & > .siteName {
+        font-size: 20px;
+      }
+    }
+  }
+  .contentWrapper {
+    & > .content {
+      padding: 36px 20px 20px 20px;
+      & > .navigationText {
+        font-size: 24px;
+        margin: 0;
+      }
+    }
+  }
+</style>

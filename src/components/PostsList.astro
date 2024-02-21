@@ -18,7 +18,7 @@ const { posts } = Astro.props;
           <Nerd iconName={post.data.tags[0]} />
         </div>
         <div class="infomation">
-          <p>{post.data.title}</p>
+          <p class="postTitle">{post.data.title}</p>
           <div class="tags">
             <Tags tags={post.data.tags} />
           </div>
@@ -39,7 +39,7 @@ const { posts } = Astro.props;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     max-width: 1000px;
     background-color: basePalette.$lightBlue;
@@ -48,7 +48,6 @@ const { posts } = Astro.props;
       flex-direction: row;
       align-items: center;
       justify-content: left;
-      width: 75%;
       padding: 10px;
       & > .icon {
         width: 90px;
@@ -58,22 +57,21 @@ const { posts } = Astro.props;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.4em;
+        font-size: 38px;
       }
       & > .infomation {
         flex: 1;
         margin: 14px;
-        & > p {
+        & > .postTitle {
           font-weight: 500;
-          font-size: 1.2em;
-          line-height: 1.5em;
+          font-size: 20px;
+          line-height: 24px;
           overflow: hidden;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
         }
         & > .tags {
-          height: 28px;
           margin: 6px 0;
         }
         & > time {
@@ -88,8 +86,22 @@ const { posts } = Astro.props;
           }
         }
       }
-      @media screen and (max-width: 500px) {
-        width: 100%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .posts {
+      & > .post {
+        & > .icon {
+          width: 75px;
+          height: 75px;
+          border-radius: 16px;
+        }
+        & > .infomation {
+          margin: 10px;
+          & > .postTitle {
+            font-size: 16px;
+          }
+        }
       }
     }
   }

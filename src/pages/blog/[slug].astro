@@ -40,7 +40,9 @@ const { Content, headings } = await post.render();
               </time>
             )
           }
-          <div class="postTitleWrapper"><p class="postTitle">{post.data.title}</p></div>
+          <div class="postTitleWrapper">
+            <p class="postTitle">{post.data.title}</p>
+          </div>
           <div class="tags">
             <Tags tags={post.data.tags} />
           </div>
@@ -81,7 +83,7 @@ const { Content, headings } = await post.render();
             display: flex;
             justify-content: center;
             & > .postTitle {
-              margin: 60px 0 60px 0;
+              margin: 60px 0 40px 0;
               font-size: 30px;
               font-weight: 600;
               color: basePalette.$black;
@@ -135,7 +137,7 @@ const { Content, headings } = await post.render();
           & > .titleBlock {
             & > .postTitleWrapper {
               & > .postTitle {
-                font-size: 24px;
+                font-size: 27px;
               }
             }
           }
@@ -156,7 +158,7 @@ const { Content, headings } = await post.render();
           & > .titleBlock {
             & > .postTitleWrapper {
               & > .postTitle {
-                font-size: 20px;
+                font-size: 22px;
               }
             }
           }
