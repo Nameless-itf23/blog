@@ -18,14 +18,14 @@ const { posts } = Astro.props;
           <Nerd iconName={post.data.tags[0]} />
         </div>
         <div class="infomation">
-          <p class="postTitle">{post.data.title}</p>
-          <div class="tags">
-            <Tags tags={post.data.tags} />
-          </div>
           <time datetime={post.data.createdAt.toISOString()}>
             <span class="material-symbols-outlined">schedule</span>
             <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
           </time>
+          <p class="postTitle">{post.data.title}</p>
+          <div class="tags">
+            <Tags tags={post.data.tags} />
+          </div>
         </div>
       </a>
     ))
@@ -63,6 +63,7 @@ const { posts } = Astro.props;
         flex: 1;
         margin: 14px;
         & > .postTitle {
+          margin: 8px 0 10px 0;
           font-weight: 500;
           font-size: 20px;
           line-height: 24px;
@@ -70,9 +71,6 @@ const { posts } = Astro.props;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
-        }
-        & > .tags {
-          margin: 6px 0;
         }
         & > time {
           display: flex;
