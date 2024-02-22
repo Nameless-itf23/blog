@@ -7,13 +7,15 @@ export type Props = {
   posts: CollectionEntry<"posts">[];
 };
 
+const POSTPAGE_BASE_URL = "/posts/";
+
 const { posts } = Astro.props;
 ---
 
 <div class="posts">
   {
     posts.map((post) => (
-      <a href={"/blog/" + post.slug} class="post">
+      <a href={POSTPAGE_BASE_URL + post.slug} class="post">
         <div class="icon">
           <Nerd iconName={post.data.tags[0]} />
         </div>
