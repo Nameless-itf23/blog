@@ -11,7 +11,7 @@ const { tags } = Astro.props;
     tags.map((tag: string) => (
       <div class="tag">
         <Nerd iconName={tag} />
-        <p>{toDisplayName(tag)}</p>
+        <p class="displayName">{toDisplayName(tag)}</p>
       </div>
     ))
   }
@@ -40,7 +40,7 @@ const { tags } = Astro.props;
       background-color: basePalette.$white;
       border: 1px solid basePalette.$whiteGray;
       border-radius: 14px;
-      & > p {
+      & > .displayName {
         padding: 0 4px;
       }
     }
