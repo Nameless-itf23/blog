@@ -1,0 +1,22 @@
+---
+import ContentLayout from "@layouts/ContentLayout.astro";
+import { getAllTags } from "@utils/postsUtils";
+import Nerd from "@components/nerd/Nerd.astro";
+import { toDisplayName } from "@components/nerd/NerdUtils";
+
+const tags = await getAllTags();
+console.log(tags);
+---
+
+<ContentLayout>
+  <div class="tags">
+    {
+      tags.map((tag) => (
+        <div class="tag">
+          <Nerd iconName={tag} />
+          <p class="displayName">{toDisplayName(tag)}</p>
+        </div>
+      ))
+    }
+  </div>
+</ContentLayout>
