@@ -9,14 +9,70 @@ console.log(tags);
 ---
 
 <ContentLayout>
-  <div class="tags">
-    {
-      tags.map((tag) => (
-        <div class="tag">
-          <Nerd iconName={tag} />
-          <p class="displayName">{toDisplayName(tag)}</p>
-        </div>
-      ))
-    }
+  <div class="content">
+    <p class="pageTitle">タグ一覧</p>
+    <div class="tagsWrapper">
+      <div class="tags">
+        {
+          tags.map((tag) => (
+            <div class="tag">
+              <div class="icon">
+                <Nerd iconName={tag} />
+              </div>
+              <p class="iconName">{toDisplayName(tag)}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </ContentLayout>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+  .content {
+    margin: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > .pageTitle {
+      margin: 0 0 40px 0;
+      color: basePalette.$black;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    & > .tagsWrapper {
+      max-width: 1000px;
+      display: flex;
+      justify-content: center;
+      & > .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 auto;
+        & > .tag {
+          & > .icon {
+            width: 90px;
+            height: 90px;
+            margin: 20px;
+            border: 2px solid basePalette.$whiteGray;
+            border-radius: 20px;
+            background-color: basePalette.$white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+          }
+          & > .iconName {
+            margin: 0 0 14px 0;
+            color: basePalette.$darkGray;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+</style>
