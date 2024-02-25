@@ -28,18 +28,20 @@ const { Content, headings } = await post.render();
     <div class="content">
       <div class="post">
         <div class="titleBlock">
-          <time datetime={post.data.createdAt.toISOString()}>
-            <span class="material-symbols-outlined">schedule</span>
-            <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
-          </time>
-          {
-            post.data.updatedAt && (
-              <time datetime={post.data.updatedAt.toISOString()}>
-                <span class="material-symbols-outlined">refresh</span>
-                <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.updatedAt)}</p>
-              </time>
-            )
-          }
+          <div class="dateInfo">
+            <time datetime={post.data.createdAt.toISOString()}>
+              <span class="material-symbols-outlined">schedule</span>
+              <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
+            </time>
+            {
+              post.data.updatedAt && (
+                <time datetime={post.data.updatedAt.toISOString()}>
+                  <span class="material-symbols-outlined">refresh</span>
+                  <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.updatedAt)}</p>
+                </time>
+              )
+            }
+          </div>
           <div class="postTitleWrapper">
             <p class="postTitle">{post.data.title}</p>
           </div>
@@ -66,63 +68,81 @@ const { Content, headings } = await post.render();
 
   .page {
     background-color: basePalette.$lightWhite;
+
     & > .content {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      gap: 50px;
       padding: 40px;
+
       & > .post {
         flex: 1;
         max-width: 1000px;
         border: 1px solid basePalette.$whiteGray;
-        padding: 16px 40px 40px 40px;
+        padding: 32px 40px 40px 40px;
         border-radius: 8px;
         background-color: basePalette.$white;
+
         & > .titleBlock {
+          display: flex;
+          flex-direction: column;
+          gap: 60px;
+
+          & .dateInfo {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+
+            & > time {
+              display: flex inline;
+              flex-direction: row;
+              align-items: center;
+              gap: 6px;
+              color: basePalette.$gray;
+              font-size: 16px;
+
+              & > .material-symbols-outlined {
+                font-size: 16px;
+              }
+            }
+          }
+
           & > .postTitleWrapper {
             display: flex;
             justify-content: center;
+
             & > .postTitle {
-              margin: 60px 0 40px 0;
               font-size: 30px;
               font-weight: 600;
               color: basePalette.$black;
             }
           }
+
           & .tags {
-            margin: 16px 0 0 0;
             display: flex;
             justify-content: center;
           }
-          & > time {
-            display: flex inline;
-            flex-direction: row;
-            align-items: center;
-            margin: 16px 16px 0 0;
-            color: basePalette.$gray;
-            font-size: 16px;
-            & > .material-symbols-outlined {
-              font-size: 16px;
-              padding: 0 6px 0 0;
-            }
-          }
         }
       }
+
       & > .toc {
         & > .tocContent {
           position: sticky;
           top: 20px;
           width: 270px;
-          margin: 0 0 0 50px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
           padding: 20px;
           border-radius: 8px;
           border: 1px solid basePalette.$whiteGray;
           background-color: basePalette.$white;
+
           & > .tocTitle {
             font-size: 16px;
             font-weight: 700;
             color: basePalette.$gray;
-            margin: 0 0 8px 0;
           }
         }
       }
@@ -133,6 +153,7 @@ const { Content, headings } = await post.render();
     .page {
       & > .content {
         padding: 30px 15px 15px 15px;
+
         & > .post {
           & > .titleBlock {
             & > .postTitleWrapper {
@@ -142,6 +163,7 @@ const { Content, headings } = await post.render();
             }
           }
         }
+
         & > .toc {
           display: none;
         }
@@ -153,8 +175,10 @@ const { Content, headings } = await post.render();
     .page {
       & > .content {
         padding: 30px 0 0 0;
+
         & > .post {
           padding: 20px;
+
           & > .titleBlock {
             & > .postTitleWrapper {
               & > .postTitle {

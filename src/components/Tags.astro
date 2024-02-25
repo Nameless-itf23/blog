@@ -26,6 +26,8 @@ const { tags } = Astro.props;
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 4px;
+
     & > .tag {
       height: 28px;
       box-sizing: border-box;
@@ -33,16 +35,13 @@ const { tags } = Astro.props;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin: 0 4px 0 0;
-      padding: 13px 8px;
+      gap: 4px;
+      padding: 13px 10px 13px 8px;
       font-size: 14px;
       color: basePalette.$darkGray;
       background-color: basePalette.$white;
       border: 1px solid basePalette.$whiteGray;
       border-radius: 14px;
-      & > .displayName {
-        padding: 0 4px;
-      }
     }
   }
 </style>
