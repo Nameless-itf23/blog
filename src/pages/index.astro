@@ -38,4 +38,18 @@ const posts = await getCollection("posts");
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    .hero {
+      & > .profileIcon {
+        width: 90px;
+        height: 90px;
+        border-radius: 45px;
+      }
+
+      & > .siteName {
+        font-size: 24px;
+      }
+    }
+  }
 </style>

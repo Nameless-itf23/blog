@@ -60,4 +60,19 @@ const { posts } = Astro.props;
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    .hero {
+      & > .icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 20px;
+        font-size: 45px;
+      }
+
+      & > .iconName {
+        font-size: 24px;
+      }
+    }
+  }
 </style>

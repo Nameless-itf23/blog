@@ -77,4 +77,34 @@ import profileIcon from "@assets/profileIcon.png";
       }
     }
   }
+
+  @media screen and (max-width: 600px) {
+    header {
+      & > .infomation {
+        padding: 0 16px;
+
+        & > .siteTitle {
+          gap: 10px;
+
+          & > .profileIcon {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+          }
+
+          & > .siteName {
+            font-size: 16px;
+          }
+        }
+
+        & > .snsLinks {
+          gap: 16px;
+
+          & > .snsLink {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
 </style>
