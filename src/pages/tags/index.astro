@@ -3,6 +3,7 @@ import ContentLayout from "@layouts/ContentLayout.astro";
 import { getAllTags } from "@utils/postsUtils";
 import Nerd from "@components/nerd/Nerd.astro";
 import { toDisplayName } from "@components/nerd/NerdUtils";
+import { TAG_POSTSLISTPAGE_BASE_URL } from "src/consts";
 
 const tags = await getAllTags();
 console.log(tags);
@@ -15,12 +16,12 @@ console.log(tags);
       <div class="tags">
         {
           tags.map((tag) => (
-            <div class="tag">
+            <a href={TAG_POSTSLISTPAGE_BASE_URL + tag} class="tag">
               <div class="icon">
                 <Nerd iconName={tag} />
               </div>
               <p class="iconName">{toDisplayName(tag)}</p>
-            </div>
+            </a>
           ))
         }
       </div>
@@ -53,6 +54,7 @@ console.log(tags);
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
         margin: 0 auto;
 

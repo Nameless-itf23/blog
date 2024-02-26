@@ -2,12 +2,11 @@
 import { type CollectionEntry } from "astro:content";
 import Nerd from "@components/nerd/Nerd.astro";
 import Tags from "@components/Tags.astro";
+import { POSTPAGE_BASE_URL } from "src/consts";
 
 export type Props = {
   posts: CollectionEntry<"posts">[];
 };
-
-const POSTPAGE_BASE_URL = "/posts/";
 
 const { posts } = Astro.props;
 ---
@@ -15,21 +14,23 @@ const { posts } = Astro.props;
 <div class="posts">
   {
     posts.map((post) => (
-      <a href={POSTPAGE_BASE_URL + post.slug} class="post">
-        <div class="icon">
+      <div class="post">
+        <a href={POSTPAGE_BASE_URL + post.slug} class="icon">
           <Nerd iconName={post.data.tags[0]} />
-        </div>
+        </a>
         <div class="infomation">
           <time datetime={post.data.createdAt.toISOString()}>
             <span class="material-symbols-outlined">schedule</span>
             <p>{new Intl.DateTimeFormat("ja-JP").format(post.data.createdAt)}</p>
           </time>
-          <p class="postTitle">{post.data.title}</p>
+          <a href={POSTPAGE_BASE_URL + post.slug} class="postTitle">
+            {post.data.title}
+          </a>
           <div class="tags">
             <Tags tags={post.data.tags} />
           </div>
         </div>
-      </a>
+      </div>
     ))
   }
 </div>

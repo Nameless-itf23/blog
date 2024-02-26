@@ -1,12 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import { SITE_NAME } from "src/consts.ts";
+import { SITE_NAME, POSTSLISTPAGE_URL } from "src/consts";
 import profileIcon from "@assets/profileIcon.png";
 ---
 
 <header>
-  <Image class="profileIcon" src={profileIcon} alt="profile icon" />
-  <p class="siteName">{SITE_NAME}</p>
+  <div class="infomation">
+    <a href={POSTSLISTPAGE_URL} class="siteNameWrapper">
+      <Image class="profileIcon" src={profileIcon} alt="profile icon" />
+      <p class="siteName">{SITE_NAME}</p>
+    </a>
+  </div>
 </header>
 
 <style lang="scss">
@@ -15,23 +19,34 @@ import profileIcon from "@assets/profileIcon.png";
   header {
     width: 100%;
     height: 60px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
     background-color: basePalette.$white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    & > .profileIcon {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-    }
+    & > .infomation {
+      width: 100%;
+      max-width: 1400px;
+      padding: 0 16px;
 
-    & > .siteName {
-      font-size: 19px;
-      font-weight: 700;
-      color: basePalette.$black;
+      & > .siteNameWrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+
+        & > .profileIcon {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+        }
+
+        & > .siteName {
+          font-size: 19px;
+          font-weight: 700;
+          color: basePalette.$black;
+        }
+      }
     }
   }
 </style>
