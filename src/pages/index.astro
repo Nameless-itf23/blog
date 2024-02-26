@@ -3,11 +3,14 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import ContentLayout from "@layouts/ContentLayout.astro";
 import PostsList from "@components/PostsList.astro";
-import { SITE_NAME, SNS_LINKS } from "src/consts.ts";
+import { toDisplayName } from "src/components/nerd/NerdUtils";
+import { getAllTags } from "src/utils/postsUtils";
+import { SITE_NAME, TAG_POSTSLISTPAGE_BASE_URL } from "src/consts.ts";
 import profileIcon from "@assets/profileIcon.png";
 import Nerd from "src/components/nerd/Nerd.astro";
 
 const posts = await getCollection("posts");
+const tags = await getAllTags();
 ---
 
 <ContentLayout>
@@ -15,11 +18,28 @@ const posts = await getCollection("posts");
     <Image class="profileIcon" src={profileIcon} alt="profile icon" />
     <p class="siteName">{SITE_NAME}</p>
   </div>
-  <div class="contentWrapper">
+  <div class="contentWrapper postsBlock">
     <div class="content">
       <p class="navigationText">Posts</p>
       <div class="postsList">
         {posts.length ? <PostsList posts={posts} /> : <p class="noPostText">記事がありません</p>}
+      </div>
+    </div>
+  </div>
+  <div class="contentWrapper tagsBlock">
+    <div class="content">
+      <p class="navigationText">Tags</p>
+      <div class="tags">
+        {
+          tags.map((tag) => (
+            <a href={TAG_POSTSLISTPAGE_BASE_URL + tag} class="tag">
+              <div class="icon">
+                <Nerd iconName={tag} />
+              </div>
+              <p class="iconName">{toDisplayName(tag)}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -48,22 +68,32 @@ const posts = await getCollection("posts");
       text-align: center;
     }
   }
+
+  .postsBlock {
+    background-color: basePalette.$lightBlue;
+  }
+
+  .tagsBlock {
+    background-color: basePalette.$white;
+  }
+
   .contentWrapper {
     width: 100%;
-    height: 800px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: basePalette.$lightBlue;
 
     & > .content {
       width: 100%;
       max-width: 950px;
-      box-sizing: border-box;
-      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 48px;
 
       & > .navigationText {
-        font-size: 24px;
+        font-size: 30px;
         font-weight: 600;
         color: basePalette.$darkGray;
       }
@@ -79,6 +109,43 @@ const posts = await getCollection("posts");
           font-weight: 500;
         }
       }
+
+      & > .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 16px auto;
+
+        & > .tag {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          margin: 20px 20px 34px 20px;
+
+          & > .icon {
+            width: 90px;
+            height: 90px;
+            border: 2px solid basePalette.$whiteGray;
+            border-radius: 20px;
+            background-color: basePalette.$white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+          }
+
+          & > .iconName {
+            color: basePalette.$darkGray;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+          }
+        }
+      }
     }
   }
 
@@ -92,6 +159,33 @@ const posts = await getCollection("posts");
 
       & > .siteName {
         font-size: 20px;
+      }
+    }
+
+    .contentWrapper {
+      & > .content {
+        gap: 0px;
+        padding: 24px;
+
+        & > .navigationText {
+          font-size: 24px;
+        }
+
+        & > .tags {
+          & > .tag {
+            margin: 10px 10px 16px 10px;
+
+            & > .icon {
+              width: 75px;
+              height: 75px;
+              border-radius: 16px;
+            }
+
+            & > .iconName {
+              font-size: 16px;
+            }
+          }
+        }
       }
     }
   }
