@@ -14,15 +14,6 @@ const posts = await getCollection("posts");
   <div class="hero">
     <Image class="profileIcon" src={profileIcon} alt="profile icon" />
     <p class="siteName">{SITE_NAME}</p>
-    <div class="linkList">
-      {
-        Object.entries(SNS_LINKS).map(([name, link]) => (
-          <a href={link} class="snsLink">
-            <Nerd iconName={name} />
-          </a>
-        ))
-      }
-    </div>
   </div>
   <div class="contentWrapper">
     <div class="content">
@@ -55,20 +46,6 @@ const posts = await getCollection("posts");
       font-size: 30px;
       font-weight: 700;
       text-align: center;
-    }
-
-    & > .linkList {
-      display: flex;
-      flex-direction: row;
-      gap: 32px;
-      align-items: center;
-
-      & > .snsLink {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 32px;
-      }
     }
   }
   .contentWrapper {

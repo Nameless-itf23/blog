@@ -1,15 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import { SITE_NAME, POSTSLISTPAGE_URL } from "src/consts";
+import Nerd from "./nerd/Nerd.astro";
+import { SITE_NAME, SNS_LINKS, POSTSLISTPAGE_URL } from "src/consts";
 import profileIcon from "@assets/profileIcon.png";
 ---
 
 <header>
   <div class="infomation">
-    <a href={POSTSLISTPAGE_URL} class="siteNameWrapper">
+    <a href={POSTSLISTPAGE_URL} class="siteTitle">
       <Image class="profileIcon" src={profileIcon} alt="profile icon" />
       <p class="siteName">{SITE_NAME}</p>
     </a>
+    <div class="snsLinks">
+      {
+        Object.entries(SNS_LINKS).map(([name, link]) => (
+          <a href={link} class="snsLink">
+            <Nerd iconName={name} />
+          </a>
+        ))
+      }
+    </div>
   </div>
 </header>
 
@@ -27,9 +37,13 @@ import profileIcon from "@assets/profileIcon.png";
     & > .infomation {
       width: 100%;
       max-width: 1400px;
-      padding: 0 16px;
+      display: flex;
+      flex: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
 
-      & > .siteNameWrapper {
+      & > .siteTitle {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -45,6 +59,20 @@ import profileIcon from "@assets/profileIcon.png";
           font-size: 19px;
           font-weight: 700;
           color: basePalette.$black;
+        }
+      }
+
+      & > .snsLinks {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        align-items: center;
+
+        & > .snsLink {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 32px;
         }
       }
     }
