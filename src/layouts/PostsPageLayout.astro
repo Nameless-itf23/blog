@@ -22,7 +22,7 @@ const { posts } = Astro.props;
     <div class="content">
       <p class="navigationText">Posts</p>
       <div class="postsList">
-        {posts.length ? <PostsList posts={posts} /> : <p class="noPostText">記事がありません</p>}
+        {posts.length ? <PostsList posts={posts} /> : <p class="noContentsText">記事がありません</p>}
       </div>
     </div>
   </div>
@@ -31,14 +31,18 @@ const { posts } = Astro.props;
       <p class="navigationText">Tags</p>
       <div class="tags">
         {
-          tags.map((tag) => (
-            <a href={TAG_POSTSLISTPAGE_BASE_URL + tag} class="tag">
-              <div class="icon">
-                <Nerd iconName={tag} />
-              </div>
-              <p class="iconName">{toDisplayName(tag)}</p>
-            </a>
-          ))
+          tags.length ? (
+            tags.map((tag) => (
+              <a href={TAG_POSTSLISTPAGE_BASE_URL + tag} class="tag">
+                <div class="icon">
+                  <Nerd iconName={tag} />
+                </div>
+                <p class="iconName">{toDisplayName(tag)}</p>
+              </a>
+            ))
+          ) : (
+            <p class="noContentsText">タグがありません</p>
+          )
         }
       </div>
     </div>
@@ -54,6 +58,12 @@ const { posts } = Astro.props;
 
   .tagsBlock {
     background-color: basePalette.$white;
+  }
+
+  .noContentsText {
+    padding: 125px 0;
+    color: basePalette.$gray;
+    font-weight: 500;
   }
 
   .contentWrapper {
@@ -81,12 +91,6 @@ const { posts } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        & > .noPostText {
-          padding: 125px 0;
-          color: basePalette.$gray;
-          font-weight: 500;
-        }
       }
 
       & > .tags {
