@@ -1,0 +1,35 @@
+---
+import { SITE_NAME, FOOTER_DESCRIPTION } from "src/consts";
+---
+
+<footer>
+  <div class="infomation">
+    <p class="siteName">{SITE_NAME}</p>
+    <p class="description">{FOOTER_DESCRIPTION}</p>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "@styles/basePalette.scss";
+
+  footer {
+    width: 100%;
+    background-color: basePalette.$white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+
+    & > .infomation {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      flex: row;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      padding: 0 24px;
+      color: basePalette.$lightGray;
+    }
+  }
+</style>

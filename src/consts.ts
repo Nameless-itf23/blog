@@ -8,7 +8,11 @@ export const SNS_LINKS = {
   twitter: "https://twitter.com/Nameless_itf",
 };
 
-export const SITE_NAME = "サイト名";
+export const SITE_NAME = "むめいのブログ";
+
+export const AUTHOR_NAME = "Nameless / むめい";
+
+export const FOOTER_DESCRIPTION = `© 2024 ${AUTHOR_NAME} All rights reserved.`;
 
 export const POSTSLISTPAGE_URL = "/";
 
