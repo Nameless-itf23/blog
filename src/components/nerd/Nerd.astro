@@ -13,6 +13,7 @@ const cssName = toCssName(iconName);
 
 <i class=`nf ${resolvedName} ${cssName}`></i>
 <style lang="scss">
+  @use "@styles/basePalette.scss";
   @use "@styles/catppuccin.scss";
 
   .heart {
@@ -21,6 +22,14 @@ const cssName = toCssName(iconName);
 
   .typescript {
     color: catppuccin.$blue;
+  }
+
+  .github {
+    color: basePalette.$black;
+  }
+
+  .twitter {
+    color: catppuccin.$sky;
   }
 
   .default {
