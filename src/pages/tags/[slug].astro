@@ -1,8 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import ContentLayout from "@layouts/ContentLayout.astro";
+import PostsPageLayout from "@layouts/PostsPageLayout.astro";
 import { getAllTags } from "@utils/postsUtils";
-import PostsList from "@components/PostsList.astro";
 import Nerd from "@components/nerd/Nerd.astro";
 import { toDisplayName } from "@components/nerd/NerdUtils";
 
@@ -22,22 +21,14 @@ const { slug } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<ContentLayout>
+<PostsPageLayout posts={posts}>
   <div class="hero">
     <div class="icon">
       <Nerd iconName={slug!} />
     </div>
     <p class="iconName">{toDisplayName(slug!)}</p>
   </div>
-  <div class="contentWrapper">
-    <div class="content">
-      <p class="navigationText">Posts</p>
-      <div class="postsList">
-        {posts.length ? <PostsList posts={posts} /> : <p class="noPostText">記事がありません</p>}
-      </div>
-    </div>
-  </div>
-</ContentLayout>
+</PostsPageLayout>
 
 <style lang="scss">
   @use "@styles/basePalette.scss";
@@ -67,53 +58,6 @@ const { posts } = Astro.props;
       font-size: 30px;
       font-weight: 700;
       text-align: center;
-    }
-  }
-  .contentWrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: basePalette.$lightBlue;
-
-    & > .content {
-      width: 100%;
-      max-width: 950px;
-      box-sizing: border-box;
-      padding: 36px;
-
-      & > .navigationText {
-        font-size: 24px;
-        font-weight: 600;
-        color: basePalette.$darkGray;
-      }
-
-      & > .postsList {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        & > .noPostText {
-          padding: 125px 0;
-          color: basePalette.$gray;
-          font-weight: 500;
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .hero {
-      & > .profileIcon {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
-      }
-
-      & > .siteName {
-        font-size: 20px;
-      }
     }
   }
 </style>
