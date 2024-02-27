@@ -21,4 +21,5 @@ pnpm-debug.log*
 .DS_Store
 
 # custom
-memo.md
+src/content/posts/*
+!.gitkeep
