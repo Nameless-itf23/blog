@@ -21,8 +21,10 @@ const { posts } = Astro.props;
   <div class="contentWrapper postsBlock">
     <div class="content">
       <p class="navigationText">Posts</p>
-      <div class="postsList">
-        {posts.length ? <PostsList posts={posts} /> : <p class="noContentsText">記事がありません</p>}
+      <div class="postsListWrapper">
+        <div class="postsList">
+          {posts.length ? <PostsList posts={posts} /> : <p class="noContentsText">記事がありません</p>}
+        </div>
       </div>
     </div>
   </div>
@@ -87,10 +89,18 @@ const { posts } = Astro.props;
         color: basePalette.$darkGray;
       }
 
-      & > .postsList {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      & > .postsListWrapper {
+        width: 100%;
+
+        & > .postsList {
+          width: 100%;
+          max-width: 720px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: left;
+          margin: 0 auto;
+        }
       }
 
       & > .tags {
