@@ -4,8 +4,8 @@ export const PROFILE = {
 };
 
 export const SNS_LINKS = {
-  github: "https://github.com/nameless-itf23",
-  twitter: "https://twitter.com/Nameless_itf",
+  github: "https://github.com/n4mlz",
+  twitter: "https://twitter.com/n4mlz",
 };
 
 export const SITE_NAME = "むめいのブログ";
