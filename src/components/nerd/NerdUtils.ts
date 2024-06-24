@@ -7,6 +7,8 @@ export const nerdFontData: NerdFontData = {
   typescript: { displayName: "TypeScript", cssName: "nf-md-language_typescript" },
   github: { displayName: "GitHub", cssName: "nf-md-github" },
   twitter: { displayName: "Twitter", cssName: "nf-md-twitter" },
+  linux: { displayName: "Linux", cssName: "nf-dev-linux" },
+  archlinux: { displayName: "Arch Linux", cssName: "nf-linux-archlinux" },
 };
 
 const defaultResolvedName = "default";
