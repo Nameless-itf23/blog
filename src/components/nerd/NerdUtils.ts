@@ -9,6 +9,8 @@ export const nerdFontData: NerdFontData = {
   twitter: { displayName: "Twitter", cssName: "nf-md-twitter" },
   linux: { displayName: "Linux", cssName: "nf-dev-linux" },
   archlinux: { displayName: "Arch Linux", cssName: "nf-linux-archlinux" },
+  react: { displayName: "React / Next.js", cssName: "nf-dev-react" },
+  sass: { displayName: "Sass", cssName: "nf-dev-sass" },
 };
 
 const defaultResolvedName = "default";

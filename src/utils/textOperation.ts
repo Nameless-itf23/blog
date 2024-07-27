@@ -1,4 +1,4 @@
-export const extractPlainText = (text: string) => {
+const extractPlainText = (text: string) => {
   const re: { [name: string]: RegExp } = {
     h: new RegExp(/^#+? /, "mg"),
     tag: new RegExp(/<("[^"]*"|'[^']*'|[^'">])*>/, "mg"),
@@ -15,3 +15,11 @@ export const extractPlainText = (text: string) => {
   }
   return text;
 };
+
+const startsWithHash = (s: string) => {
+  s = s.trim();
+
+  return s.startsWith("#");
+};
+
+export { extractPlainText, startsWithHash };

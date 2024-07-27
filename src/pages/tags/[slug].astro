@@ -9,7 +9,9 @@ export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
   const tags = await getAllTags();
   return tags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+    const filteredPosts = allPosts
+      .filter((post) => post.data.tags.includes(tag))
+      .sort((a, b) => (a.data?.createdAt < b.data?.createdAt ? 1 : -1));
     return {
       params: { slug: tag },
       props: { posts: filteredPosts },

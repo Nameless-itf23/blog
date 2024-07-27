@@ -6,13 +6,13 @@ import PostWrapper from "@components/PostWrapper.astro";
 import Toc from "@components/toc/Toc.astro";
 import Tags from "@components/Tags.astro";
 import Nerd from "src/components/nerd/Nerd.astro";
-import { extractPlainText } from "@utils/textExtractor";
+import { extractPlainText, startsWithHash } from "@utils/textOperation";
 import { PROFILE, SNS_LINKS } from "src/consts";
 import profileIcon from "@assets/profileIcon.png";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map((post: any) => ({
+  return posts.map((post: CollectionEntry<"posts">) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -23,6 +23,9 @@ export type Props = {
 };
 
 const { post } = Astro.props;
+
+console.log(post.body);
+console.log(startsWithHash(post.body));
 
 const { Content, headings } = await post.render();
 ---
@@ -53,6 +56,7 @@ const { Content, headings } = await post.render();
             <Tags tags={post.data.tags} />
           </div>
         </div>
+        {!startsWithHash(post.body) && <div class="paddingBlock" />}
         <PostWrapper>
           <Content />
         </PostWrapper>
@@ -143,6 +147,10 @@ const { Content, headings } = await post.render();
             display: flex;
             justify-content: center;
           }
+        }
+
+        & > .paddingBlock {
+          padding-top: 70px;
         }
       }
 
