@@ -5,6 +5,7 @@ interface NerdFontData {
 export const nerdFontData: NerdFontData = {
   heart: { displayName: "heart", cssName: "nf-fa-heart" },
   typescript: { displayName: "TypeScript", cssName: "nf-md-language_typescript" },
+  git: { displayName: "Git", cssName: "nf-dev-git" },
   github: { displayName: "GitHub", cssName: "nf-md-github" },
   twitter: { displayName: "Twitter", cssName: "nf-md-twitter" },
   linux: { displayName: "Linux", cssName: "nf-dev-linux" },
